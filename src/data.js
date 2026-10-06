@@ -2,7 +2,6 @@
 export const profile = {
   name: 'Bless S. Florentino',
   role: 'Information Systems Graduate · Full-Stack Developer',
-  headline: 'Welcome to my portfolio.',
   intro: '', // leave empty to hide the paragraph under the headline
   location: 'Iloilo, Philippines',
   email: 'florentinobless@gmail.com',
