@@ -79,6 +79,7 @@ function SkillRow({ s }) {
 
 export default function App() {
   const liveCount = projects.filter((p) => p.url).length;
+  const hasIntro = Boolean(profile.intro && profile.intro.trim());
   const contacts = [
     { label: profile.email, href: `mailto:${profile.email}` },
     { label: profile.phone, href: `tel:${profile.phone.replace(/\s/g, '')}` },
@@ -104,10 +105,12 @@ export default function App() {
         <section className="bg-[#0a1730]">
           <div className={`${wrap} pb-16 pt-14 md:pb-24 md:pt-20`}>
             <p className={label}>{profile.role}</p>
-            <div className="mt-7 grid items-end gap-10 md:grid-cols-[1.5fr_1fr] md:gap-16">
-              <h1 className="max-w-[17ch] text-[clamp(2.2rem,5.4vw,4rem)] font-semibold leading-[1.06] tracking-[-0.025em]">{profile.headline}</h1>
+            <div className={`mt-7 grid items-end gap-10 ${hasIntro ? 'md:grid-cols-[1.5fr_1fr] md:gap-16' : ''}`}>
+              <h1 className={`${hasIntro ? 'max-w-[17ch] text-[clamp(2.2rem,5.4vw,4rem)]' : 'max-w-[16ch] text-[clamp(2.8rem,7.5vw,5.75rem)]'} font-semibold leading-[1.04] tracking-[-0.03em]`}>
+                {profile.headline || profile.name}
+              </h1>
               <div>
-                <p className={`mb-8 text-[17px] ${muted}`}>{profile.intro}</p>
+                {hasIntro && <p className={`mb-8 text-[17px] ${muted}`}>{profile.intro}</p>}
                 <div className="flex flex-wrap gap-3">
                   <a href="#work" className={btnPrimary}>View projects</a>
                   <a href={profile.resume} download className={btnGhost}>Download résumé</a>
