@@ -268,8 +268,8 @@ export default function App() {
           <div className={`${wrap} grid gap-14 py-20 md:py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-24`}>
             <div>
               <p className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-[#7fc4a6]">Contact</p>
-              <h2 className={`${serif} mt-4 max-w-[14ch] text-[clamp(2.4rem,5vw,3.9rem)] font-medium leading-[1.04] tracking-[-0.025em]`}>
-                Open to full-stack and business application roles.
+              <h2 className={`${serif} mt-4 max-w-[17ch] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] font-medium leading-[1.04] tracking-[-0.025em]`}>
+                Open to full‑stack and business application roles.
               </h2>
               <p className="mt-6 flex items-center gap-2 text-night-muted">
                 <LuMapPin aria-hidden="true" size={18} />
