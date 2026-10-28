@@ -1,4 +1,5 @@
 import { profile, experience, education, projects, skills } from './data.js';
+import { skillIcons, fallbackIcon } from './skillIcons.jsx';
 
 // Styling is Tailwind; colours and fonts are tokens defined in index.css.
 const wrap = 'mx-auto w-full max-w-[1120px] px-5 sm:px-8';
@@ -72,9 +73,17 @@ function SkillGroup({ s }) {
       <h3 className={`${serif} text-[24px] font-medium leading-tight tracking-[-0.01em]`}>{s.group}</h3>
       <p className="mt-1 text-[14.5px] text-muted">{s.note}</p>
       <ul className="mt-5 flex flex-col">
-        {s.items.map((it) => (
-          <li key={it} className="border-b border-rule/70 py-2 text-[15.5px] last:border-b-0">{it}</li>
-        ))}
+        {s.items.map((it) => {
+          const { Icon, color } = skillIcons[it] || fallbackIcon;
+          return (
+            <li key={it} className="flex items-center gap-3.5 border-b border-rule/70 py-2.5 text-[15.5px] last:border-b-0">
+              <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-rule bg-card">
+                <Icon size={20} color={color} />
+              </span>
+              <span className="leading-snug">{it}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
@@ -185,7 +194,7 @@ export default function App() {
         {/* skills */}
         <section id="skills" className={`${wrap} py-20 md:py-24`}>
           <SectionHead kicker="Toolkit" title="Technical skills" />
-          <div className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {skills.map((s) => <SkillGroup key={s.group} s={s} />)}
           </div>
         </section>

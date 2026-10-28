@@ -79,7 +79,9 @@ export const projects = [
 
 export const skills = [
   { group: 'Languages', note: 'Front end, back end and queries', items: ['PHP', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL'] },
+  { group: 'Frameworks', note: 'Web apps and interfaces', items: ['React', 'Next.js', 'Node.js', 'Laravel', 'Tailwind CSS'] },
   { group: 'Databases', note: 'Relational and hosted', items: ['MySQL', 'PostgreSQL', 'Supabase'] },
   { group: 'Tools', note: 'Build, version, deploy', items: ['Visual Studio Code', 'Git', 'GitHub', 'Vercel', 'Hostinger', 'Microsoft Office'] },
+  { group: 'IT support & maintenance', note: 'Keeping the office running', items: ['IT support & troubleshooting', 'PC repair & maintenance', 'Printer repair & maintenance', 'Hardware & peripherals', 'Network & connectivity', 'Preventive maintenance'] },
   { group: 'Design', note: 'How the systems feel to use', items: ['User-friendly interfaces', 'Responsive layouts', 'Usability-focused UX'] },
 ];

@@ -2,37 +2,55 @@ import {
   SiPhp, SiJavascript, SiTypescript, SiHtml5, SiCss,
   SiMysql, SiPostgresql, SiSupabase,
   SiGit, SiGithub, SiVercel, SiHostinger,
+  SiReact, SiNextdotjs, SiNodedotjs, SiLaravel, SiTailwindcss,
 } from 'react-icons/si';
 import { TbSql, TbBrandVscode, TbBrandOffice } from 'react-icons/tb';
-import { LuLayoutTemplate, LuMonitorSmartphone, LuMousePointerClick, LuCode } from 'react-icons/lu';
+import {
+  LuLayoutTemplate, LuMonitorSmartphone, LuMousePointerClick, LuCode,
+  LuHeadset, LuMonitorCog, LuPrinter, LuWrench, LuHardDrive, LuNetwork,
+} from 'react-icons/lu';
 
 // Key = the exact skill name used in data.js. Add a line here when you add a skill.
-// Colours are the official brand colours, lightened a little where the original
-// is too dark to read on the navy background (GitHub, Vercel, MySQL, CSS, Hostinger).
-const BLUE = '#6db4ff';
+// Brand colours, tuned to stay readable on the light paper background
+// (React, Tailwind, JavaScript are slightly deepened; GitHub, Vercel, Next.js use ink).
+const INK = '#17191c';
+const GREEN = '#1c5a46';
 
 export const skillIcons = {
-  PHP: { Icon: SiPhp, color: '#aab0f0' },
-  JavaScript: { Icon: SiJavascript, color: '#f7df1e' },
-  TypeScript: { Icon: SiTypescript, color: '#4a95e8' },
-  HTML: { Icon: SiHtml5, color: '#ee5d33' },
-  CSS: { Icon: SiCss, color: '#a678e8' },
-  SQL: { Icon: TbSql, color: '#a9d0f7' },
+  PHP: { Icon: SiPhp, color: '#777bb4' },
+  JavaScript: { Icon: SiJavascript, color: '#d9b700' },
+  TypeScript: { Icon: SiTypescript, color: '#3178c6' },
+  HTML: { Icon: SiHtml5, color: '#e34f26' },
+  CSS: { Icon: SiCss, color: '#1572b6' },
+  SQL: { Icon: TbSql, color: '#4b5f73' },
 
-  MySQL: { Icon: SiMysql, color: '#7cc3f0' },
-  PostgreSQL: { Icon: SiPostgresql, color: '#86a6ff' },
-  Supabase: { Icon: SiSupabase, color: '#3ecf8e' },
+  React: { Icon: SiReact, color: '#0b86a8' },
+  'Next.js': { Icon: SiNextdotjs, color: INK },
+  'Node.js': { Icon: SiNodedotjs, color: '#3c873a' },
+  Laravel: { Icon: SiLaravel, color: '#ff2d20' },
+  'Tailwind CSS': { Icon: SiTailwindcss, color: '#0891b2' },
 
-  'Visual Studio Code': { Icon: TbBrandVscode, color: '#2fa8f5' },
+  MySQL: { Icon: SiMysql, color: '#4479a1' },
+  PostgreSQL: { Icon: SiPostgresql, color: '#336791' },
+  Supabase: { Icon: SiSupabase, color: '#1fae72' },
+
+  'Visual Studio Code': { Icon: TbBrandVscode, color: '#007acc' },
   Git: { Icon: SiGit, color: '#f05032' },
-  GitHub: { Icon: SiGithub, color: '#eef3fb' },
-  Vercel: { Icon: SiVercel, color: '#eef3fb' },
-  Hostinger: { Icon: SiHostinger, color: '#9576ff' },
-  'Microsoft Office': { Icon: TbBrandOffice, color: '#f0642d' },
+  GitHub: { Icon: SiGithub, color: INK },
+  Vercel: { Icon: SiVercel, color: INK },
+  Hostinger: { Icon: SiHostinger, color: '#673de6' },
+  'Microsoft Office': { Icon: TbBrandOffice, color: '#d83b01' },
 
-  'User-friendly interfaces': { Icon: LuLayoutTemplate, color: BLUE },
-  'Responsive layouts': { Icon: LuMonitorSmartphone, color: BLUE },
-  'Usability-focused UX': { Icon: LuMousePointerClick, color: BLUE },
+  'IT support & troubleshooting': { Icon: LuHeadset, color: GREEN },
+  'PC repair & maintenance': { Icon: LuMonitorCog, color: GREEN },
+  'Printer repair & maintenance': { Icon: LuPrinter, color: GREEN },
+  'Hardware & peripherals': { Icon: LuHardDrive, color: GREEN },
+  'Network & connectivity': { Icon: LuNetwork, color: GREEN },
+  'Preventive maintenance': { Icon: LuWrench, color: GREEN },
+
+  'User-friendly interfaces': { Icon: LuLayoutTemplate, color: GREEN },
+  'Responsive layouts': { Icon: LuMonitorSmartphone, color: GREEN },
+  'Usability-focused UX': { Icon: LuMousePointerClick, color: GREEN },
 };
 
-export const fallbackIcon = { Icon: LuCode, color: BLUE };
+export const fallbackIcon = { Icon: LuCode, color: GREEN };
