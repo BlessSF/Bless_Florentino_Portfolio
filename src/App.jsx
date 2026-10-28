@@ -1,6 +1,6 @@
 import { profile, experience, education, projects, skills } from './data.js';
 import { skillIcons, fallbackIcon } from './skillIcons.jsx';
-import { LuMail, LuPhone, LuMapPin, LuDownload } from 'react-icons/lu';
+import { LuMail, LuPhone, LuMapPin, LuDownload, LuBriefcase, LuGraduationCap, LuLayers, LuArrowDown } from 'react-icons/lu';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 // Styling is Tailwind; colours and fonts are tokens defined in index.css.
@@ -149,30 +149,59 @@ export default function App() {
 
       <main id="top">
         {/* hero */}
-        <section className={`${wrap} pb-20 pt-16 md:pb-28 md:pt-24`}>
-          <div className="grid gap-14 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)] lg:gap-20">
-            <div>
-              <p className={eyebrow}>{profile.role}</p>
-              <h1 className={`${serif} mt-6 text-[clamp(3rem,8vw,6.25rem)] font-medium leading-[0.98] tracking-[-0.035em]`}>
-                {profile.name}
-              </h1>
-              {hasIntro && <p className="mt-8 max-w-[34ch] text-[clamp(1.25rem,2.2vw,1.6rem)] leading-snug text-ink/80">{profile.intro}</p>}
-              <div className="mt-10 flex flex-wrap gap-3">
-                <a href="#work" className={btnPrimary}>View projects</a>
-                <a href={profile.resume} download className={btnGhost}>Download résumé</a>
+        <section className="relative overflow-hidden">
+          {/* faint ruled-ledger lines, fading out downward */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-60"
+            style={{
+              backgroundImage: 'repeating-linear-gradient(to bottom, transparent 0, transparent 47px, var(--color-rule) 47px, var(--color-rule) 48px)',
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 85%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 85%)',
+            }}
+          />
+          <div className={`${wrap} relative pb-16 pt-14 md:pb-20 md:pt-20`}>
+            <p className="inline-flex items-center gap-2.5 rounded-full border border-rule bg-card py-1.5 pl-3 pr-4 text-[14px] text-ink/80">
+              <span aria-hidden="true" className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/40 motion-reduce:hidden" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
+              </span>
+              Open to opportunities
+            </p>
+
+            <h1 className={`${serif} mt-8 text-[clamp(2.9rem,8.4vw,7rem)] font-medium leading-[0.98] tracking-[-0.035em]`}>
+              {profile.name}
+            </h1>
+            <p className={`${eyebrow} mt-6`}>{profile.role}</p>
+
+            <div className="mt-10 grid items-end gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
+              {hasIntro && <p className="max-w-[30ch] text-balance text-[clamp(1.35rem,2.5vw,1.9rem)] leading-snug text-ink/85">{profile.intro}</p>}
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <a href="#work" className={`${btnPrimary} gap-2`}>
+                  View projects
+                  <LuArrowDown aria-hidden="true" size={17} />
+                </a>
+                <a href={profile.resume} download className={`${btnGhost} gap-2`}>
+                  <LuDownload aria-hidden="true" size={17} />
+                  Download résumé
+                </a>
               </div>
             </div>
 
-            <dl className="self-end border-t border-ink lg:border-l lg:border-t-0 lg:pl-8">
+            <dl className="mt-16 grid grid-cols-1 gap-x-8 border-t border-ink sm:grid-cols-2 lg:grid-cols-4">
               {[
-                ['Currently', `${current.role}, ${current.org}`],
-                ['Education', `${education.degree}, ${education.school}`],
-                ['Built', `${pad(liveCount)} live systems, ${pad(otherCount)} internal or academic`],
-                ['Based in', profile.location],
-              ].map(([k, v]) => (
-                <div key={k} className="border-b border-rule py-4 lg:first:pt-0 lg:last:border-b-0">
-                  <dt className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-muted">{k}</dt>
-                  <dd className="mt-1 text-[16.5px] leading-snug">{v}</dd>
+                [LuBriefcase, 'Currently', current.role, current.org],
+                [LuGraduationCap, 'Education', education.degree, education.school],
+                [LuLayers, 'Built', `${pad(liveCount)} live systems`, `${pad(otherCount)} internal or academic`],
+                [LuMapPin, 'Based in', profile.location.split(',')[0], profile.location.split(',').slice(1).join(',').trim()],
+              ].map(([Icon, k, v, sub]) => (
+                <div key={k} className="flex gap-4 border-b border-rule py-6 lg:border-b-0">
+                  <Icon aria-hidden="true" size={20} className="mt-1 shrink-0 text-accent" />
+                  <div>
+                    <dt className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-muted">{k}</dt>
+                    <dd className="mt-1.5 text-[17px] font-medium leading-snug">{v}</dd>
+                    <dd className="mt-0.5 text-[14.5px] leading-snug text-muted">{sub}</dd>
+                  </div>
                 </div>
               ))}
             </dl>
