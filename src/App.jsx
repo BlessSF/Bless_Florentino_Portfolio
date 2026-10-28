@@ -1,5 +1,7 @@
 import { profile, experience, education, projects, skills } from './data.js';
 import { skillIcons, fallbackIcon } from './skillIcons.jsx';
+import { LuMail, LuPhone, LuMapPin, LuDownload } from 'react-icons/lu';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 // Styling is Tailwind; colours and fonts are tokens defined in index.css.
 const wrap = 'mx-auto w-full max-w-[1120px] px-5 sm:px-8';
@@ -126,8 +128,10 @@ export default function App() {
   const hasIntro = Boolean(profile.intro && profile.intro.trim());
   const current = experience[0];
   const contacts = [
-    { label: profile.email, href: `mailto:${profile.email}` },
-    { label: profile.phone, href: `tel:${profile.phone.replace(/\s/g, '')}` },
+    { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, Icon: LuMail },
+    { label: 'Phone', value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, '')}`, Icon: LuPhone },
+    { label: 'LinkedIn', value: 'bless-florentino', href: profile.linkedin, Icon: FaLinkedin, external: true },
+    { label: 'GitHub', value: 'BlessSF', href: profile.github, Icon: FaGithub, external: true },
   ];
 
   return (
@@ -232,35 +236,52 @@ export default function App() {
 
         {/* contact */}
         <section id="contact" className="bg-night text-night-text">
-          <div className={`${wrap} py-20 md:py-28`}>
-            <p className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-[#7fc4a6]">Contact</p>
-            <h2 className={`${serif} mt-4 max-w-[18ch] text-[clamp(2.2rem,5.2vw,4rem)] font-medium leading-[1.05] tracking-[-0.025em]`}>
-              Open to full-stack and business application roles.
-            </h2>
-            <p className="mt-6 max-w-[52ch] text-night-muted">Based in Iloilo, Philippines. The quickest way to reach me is email.</p>
+          <div className={`${wrap} grid gap-14 py-20 md:py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-24`}>
+            <div>
+              <p className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-[#7fc4a6]">Contact</p>
+              <h2 className={`${serif} mt-4 max-w-[14ch] text-[clamp(2.4rem,5vw,3.9rem)] font-medium leading-[1.04] tracking-[-0.025em]`}>
+                Open to full-stack and business application roles.
+              </h2>
+              <p className="mt-6 flex items-center gap-2 text-night-muted">
+                <LuMapPin aria-hidden="true" size={18} />
+                Based in {profile.location}
+              </p>
+              <a href={profile.resume} download className="mt-10 inline-flex items-center gap-2.5 rounded-full bg-[#e8efe9] px-6 py-3 text-[15px] font-medium text-night transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7fc4a6]">
+                <LuDownload aria-hidden="true" size={18} />
+                Download résumé
+              </a>
+            </div>
 
-            <ul className="mt-10 flex flex-col items-start gap-3">
-              {contacts.map((c) => (
-                <li key={c.href}>
-                  <a href={c.href} className="text-[clamp(1.25rem,2.8vw,1.9rem)] font-medium tracking-[-0.01em] underline decoration-white/25 decoration-1 underline-offset-[10px] transition-colors hover:decoration-[#7fc4a6] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7fc4a6]">{c.label}</a>
+            <ul className="self-end border-t border-white/15">
+              {contacts.map(({ label, value, href, Icon, external }) => (
+                <li key={label} className="border-b border-white/15">
+                  <a
+                    href={href}
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="group -mx-4 flex items-center gap-5 px-4 py-5 transition-colors hover:bg-white/[0.04] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#7fc4a6]"
+                  >
+                    <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/20 text-[#7fc4a6]">
+                      <Icon size={19} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[12.5px] font-semibold uppercase tracking-[0.12em] text-night-muted">{label}</span>
+                      <span className="mt-0.5 block truncate text-[clamp(1.1rem,2vw,1.4rem)] font-medium">{value}</span>
+                    </span>
+                    <span aria-hidden="true" className="text-xl text-night-muted transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#7fc4a6] motion-reduce:transition-none">{external ? '↗' : '→'}</span>
+                  </a>
                 </li>
               ))}
             </ul>
-
-            <div className="mt-12 flex flex-wrap gap-3">
-              {[['LinkedIn', profile.linkedin], ['GitHub', profile.github]].map(([t, h]) => (
-                <a key={t} href={h} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full border border-white/25 px-6 py-3 text-[15px] font-medium transition-colors hover:bg-white hover:text-night focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7fc4a6]">{t} ↗</a>
-              ))}
-              <a href={profile.resume} download className="inline-flex items-center rounded-full bg-[#e8efe9] px-6 py-3 text-[15px] font-medium text-night transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7fc4a6]">Download résumé</a>
-            </div>
           </div>
         </section>
       </main>
 
       <footer className="bg-night text-night-muted">
-        <div className={`${wrap} flex justify-between border-t border-white/10 py-6 text-[14px]`}>
-          <span>© {new Date().getFullYear()} {profile.name}</span>
-          <a href="#top" className="transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7fc4a6]">Back to top ↑</a>
+        <div className={wrap}>
+          <div className="flex justify-between border-t border-white/10 py-6 text-[14px]">
+            <span>© {new Date().getFullYear()} {profile.name}</span>
+            <a href="#top" className="transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7fc4a6]">Back to top ↑</a>
+          </div>
         </div>
       </footer>
     </div>
