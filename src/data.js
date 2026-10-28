@@ -47,7 +47,7 @@ export const projects = [
     title: 'MedRep',
     url: 'https://medrep-two.vercel.app/login',
     text: 'Daily transaction and cash-out management system tracking deposits, cash-outs and inter-employee transfers, with searchable records and monthly summary reports.',
-    stack: ['Transactions', 'Cash-outs', 'Reporting'],
+    stack: ['Next.js', 'TypeScript', 'JavaScript', 'PHP'],
     access: 'Live · login required',
     preview: { src: '/previews/medrep.webp', alt: 'MedRep sign-in screen with branch selector' },
   },
