@@ -2,8 +2,8 @@
 
 /* Design tokens. Change a value here and the whole site follows. */
 @theme {
-  --font-serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --font-sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --color-paper: #f5f2ea;      /* page background, warm off-white */
   --color-card: #fbf9f4;       /* raised surfaces */

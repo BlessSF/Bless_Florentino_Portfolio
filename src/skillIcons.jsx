@@ -8,6 +8,7 @@ import { TbSql, TbBrandVscode, TbBrandOffice } from 'react-icons/tb';
 import {
   LuLayoutTemplate, LuMonitorSmartphone, LuMousePointerClick, LuCode,
   LuHeadset, LuMonitorCog, LuPrinter, LuWrench, LuHardDrive, LuNetwork,
+  LuArrowLeftRight, LuBanknote, LuChartColumn, LuCalculator, LuGlobe, LuFolderOpen, LuTrophy,
 } from 'react-icons/lu';
 
 // Key = the exact skill name used in data.js. Add a line here when you add a skill.
@@ -47,6 +48,15 @@ export const skillIcons = {
   'Hardware & peripherals': { Icon: LuHardDrive, color: GREEN },
   'Network & connectivity': { Icon: LuNetwork, color: GREEN },
   'Preventive maintenance': { Icon: LuWrench, color: GREEN },
+
+  // project tags that describe a feature or domain rather than a technology
+  Transactions: { Icon: LuArrowLeftRight, color: GREEN },
+  'Cash-outs': { Icon: LuBanknote, color: GREEN },
+  Reporting: { Icon: LuChartColumn, color: GREEN },
+  Accounting: { Icon: LuCalculator, color: GREEN },
+  'Web app': { Icon: LuGlobe, color: GREEN },
+  'Document management': { Icon: LuFolderOpen, color: GREEN },
+  Ranking: { Icon: LuTrophy, color: GREEN },
 
   'User-friendly interfaces': { Icon: LuLayoutTemplate, color: GREEN },
   'Responsive layouts': { Icon: LuMonitorSmartphone, color: GREEN },

@@ -68,9 +68,15 @@ function ProjectRow({ p, i }) {
           </span>
           <span className="max-w-[52ch] text-[16px] leading-relaxed text-muted">{p.text}</span>
           <span className="flex flex-wrap gap-1.5">
-            {p.stack.map((s) => (
-              <span key={s} className="rounded-full border border-rule bg-card px-2.5 py-0.5 text-[13px] text-ink/80">{s}</span>
-            ))}
+            {p.stack.map((s) => {
+              const { Icon, color } = skillIcons[s] || fallbackIcon;
+              return (
+                <span key={s} className="inline-flex items-center gap-1.5 rounded-full border border-rule bg-card py-1 pl-2.5 pr-3 text-[13px] text-ink/80">
+                  <Icon size={14} color={color} aria-hidden="true" />
+                  {s}
+                </span>
+              );
+            })}
           </span>
           <span className="flex items-center gap-2 text-[14px] font-medium">
             <span aria-hidden="true" className={`h-2 w-2 rounded-full ${live ? 'bg-accent' : 'bg-rule ring-1 ring-inset ring-muted/40'}`} />
