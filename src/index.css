@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+/* Design tokens. Change a value here and the whole site follows. */
+@theme {
+  --font-serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --color-paper: #f5f2ea;      /* page background, warm off-white */
+  --color-card: #fbf9f4;       /* raised surfaces */
+  --color-ink: #17191c;        /* primary text */
+  --color-muted: #5b6066;      /* secondary text (6:1 on paper) */
+  --color-rule: #d9d3c5;       /* hairlines */
+  --color-accent: #1c5a46;     /* ledger green */
+  --color-accent-soft: #e2ebe5;
+  --color-night: #13201b;      /* inverse section */
+  --color-night-text: #e8efe9;
+  --color-night-muted: #a3b5ab;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

@@ -2,7 +2,7 @@
 export const profile = {
   name: 'Bless S. Florentino',
   role: 'Information Systems Graduate · Full-Stack Developer',
-  intro: '', // leave empty to hide the paragraph under the headline
+  intro: 'I build payroll, receivables and accounting systems, from the database to the screen people use every day.', // leave empty to hide
   location: 'Iloilo, Philippines',
   email: 'florentinobless@gmail.com',
   phone: '+63 968 239 1226',
