@@ -41,6 +41,7 @@ export const projects = [
     text: 'Accounts receivable system for tracking what each company owes: ledgers, statements of account, aging reports and branch-level access.',
     stack: ['React', 'Node.js', 'Supabase', 'Vercel'],
     access: 'Live · login required',
+    preview: { src: '/previews/receivables.webp', alt: 'Receivables sign-in screen with a dark analytics illustration' },
   },
   {
     title: 'MedRep',
@@ -48,6 +49,7 @@ export const projects = [
     text: 'Daily transaction and cash-out management system tracking deposits, cash-outs and inter-employee transfers, with searchable records and monthly summary reports.',
     stack: ['Transactions', 'Cash-outs', 'Reporting'],
     access: 'Live · login required',
+    preview: { src: '/previews/medrep.webp', alt: 'MedRep sign-in screen with branch selector' },
   },
   {
     title: 'Accounting System',
@@ -55,6 +57,7 @@ export const projects = [
     text: 'System supporting core accounting and record-keeping functions.',
     stack: ['PHP', 'MySQL', 'Accounting'],
     access: 'Live',
+    preview: { src: '/previews/accounting.webp', alt: 'Accounting System role picker: Manager, Accounting Head, Accounting, OIC/Cashier', bg: '#f3f4f6', fit: 'contain' },
   },
   {
     title: 'Service Charge System',
@@ -62,6 +65,7 @@ export const projects = [
     text: 'System to manage and track the distribution of service charges.',
     stack: ['PHP', 'MySQL'],
     access: 'Live · login required',
+    preview: { src: '/previews/service-charge.webp', alt: 'Service Charge Management System sign-in screen' },
   },
   {
     title: 'Payroll & Employee Management',

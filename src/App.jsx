@@ -23,6 +23,31 @@ function SectionHead({ kicker, title, aside }) {
   );
 }
 
+function Preview({ p }) {
+  const { src, alt, bg, fit } = p.preview;
+  let host = '';
+  try { host = new URL(p.url).hostname; } catch { /* internal projects have no url */ }
+  return (
+    <span className="block overflow-hidden rounded-xl border border-rule bg-card shadow-[0_1px_2px_rgba(23,25,28,0.04),0_12px_28px_-16px_rgba(23,25,28,0.25)] ">
+      <span className="flex h-8 items-center gap-3 border-b border-rule bg-card px-3.5">
+        <span aria-hidden="true" className="flex gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-rule" /><span className="h-2 w-2 rounded-full bg-rule" /><span className="h-2 w-2 rounded-full bg-rule" />
+        </span>
+        <span className="min-w-0 flex-1 truncate rounded-md bg-paper px-2.5 py-0.5 text-center text-[11.5px] text-muted">{host}</span>
+      </span>
+      <span className="block aspect-[2/1] overflow-hidden" style={{ background: bg || undefined }}>
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          className={`h-full w-full ${fit === 'contain' ? 'object-contain' : 'object-cover object-center'} transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none`}
+        />
+      </span>
+    </span>
+  );
+}
+
 function ProjectRow({ p, i }) {
   const live = Boolean(p.url);
   const Tag = live ? 'a' : 'div';
@@ -31,24 +56,18 @@ function ProjectRow({ p, i }) {
     <li>
       <Tag
         {...linkProps}
-        className={`group grid grid-cols-[32px_1fr] gap-x-4 gap-y-3 border-b border-rule px-0 py-8 transition-colors motion-reduce:transition-none md:grid-cols-[64px_minmax(0,1.6fr)_minmax(0,1fr)] md:gap-x-8 md:px-4 md:-mx-4 ${live ? `hover:bg-card ${focus}` : ''}`}
+        className={`group grid grid-cols-[32px_1fr] gap-x-4 gap-y-6 border-b border-rule py-10 transition-colors motion-reduce:transition-none md:-mx-4 md:grid-cols-[48px_minmax(0,1fr)_minmax(0,430px)] md:gap-x-8 md:px-4 ${live ? `hover:bg-card/70 ${focus}` : ''}`}
       >
-        <span className={`${serif} pt-1.5 text-[15px] tabular-nums text-muted`}>{pad(i + 1)}</span>
+        <span className={`${serif} pt-1.5 text-[15px] tabular-nums text-muted md:col-start-1 md:row-start-1`}>{pad(i + 1)}</span>
 
-        <span className="flex flex-col gap-2">
+        <span className="flex flex-col gap-4 md:col-start-2 md:row-start-1">
           <span className="flex items-start justify-between gap-4">
-            <span className={`${serif} text-[clamp(1.5rem,2.6vw,2rem)] font-medium leading-tight tracking-[-0.015em] ${live ? 'group-hover:text-accent' : ''}`}>
+            <span className={`${serif} text-[clamp(1.6rem,2.8vw,2.2rem)] font-medium leading-tight tracking-[-0.015em] ${live ? 'group-hover:text-accent' : ''}`}>
               {p.title}
             </span>
-            {live && (
-              <span aria-hidden="true" className="mt-1 text-xl leading-none text-muted transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent motion-reduce:transition-none md:hidden">↗</span>
-            )}
           </span>
-          <span className="max-w-[56ch] text-[16px] leading-relaxed text-muted">{p.text}</span>
-        </span>
-
-        <span className="col-start-2 flex flex-col gap-3 md:col-start-auto md:items-end md:text-right">
-          <span className="flex flex-wrap gap-1.5 md:justify-end">
+          <span className="max-w-[52ch] text-[16px] leading-relaxed text-muted">{p.text}</span>
+          <span className="flex flex-wrap gap-1.5">
             {p.stack.map((s) => (
               <span key={s} className="rounded-full border border-rule bg-card px-2.5 py-0.5 text-[13px] text-ink/80">{s}</span>
             ))}
@@ -57,11 +76,17 @@ function ProjectRow({ p, i }) {
             <span aria-hidden="true" className={`h-2 w-2 rounded-full ${live ? 'bg-accent' : 'bg-rule ring-1 ring-inset ring-muted/40'}`} />
             <span className={live ? 'text-accent' : 'text-muted'}>{p.access}</span>
             {live && (
-              <span aria-hidden="true" className="hidden text-lg leading-none text-muted transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent motion-reduce:transition-none md:inline">↗</span>
+              <span aria-hidden="true" className="text-lg leading-none text-muted transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent motion-reduce:transition-none">↗</span>
             )}
           </span>
           {live && <span className="sr-only">Opens {p.title} in a new tab</span>}
         </span>
+
+        {p.preview && (
+          <span className="col-start-2 md:col-start-3 md:row-start-1">
+            <Preview p={p} />
+          </span>
+        )}
       </Tag>
     </li>
   );
