@@ -5,7 +5,7 @@ import { LuMail, LuPhone, LuMapPin, LuDownload, LuBriefcase, LuGraduationCap, Lu
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 // Styling is Tailwind; colours and fonts are tokens defined in index.css.
-const wrap = 'mx-auto w-full max-w-[1120px] px-5 sm:px-8';
+const wrap = 'mx-auto w-full max-w-[1640px] px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-24';
 const focus = 'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent';
 const serif = 'font-serif';
 const eyebrow = 'text-[12.5px] font-semibold uppercase tracking-[0.12em] text-accent';
@@ -82,11 +82,11 @@ function ProjectRow({ p, i }) {
     <li>
       <Tag
         {...linkProps}
-        className={`group grid grid-cols-[32px_1fr] gap-x-4 gap-y-6 border-b border-rule py-10 transition-colors motion-reduce:transition-none md:-mx-4 md:grid-cols-[48px_minmax(0,1fr)_minmax(0,430px)] md:gap-x-8 md:px-4 ${live ? `hover:bg-card/70 ${focus}` : ''}`}
+        className={`group grid grid-cols-[32px_1fr] gap-x-4 gap-y-6 border-b border-rule py-10 transition-colors motion-reduce:transition-none lg:-mx-4 lg:grid-cols-[56px_minmax(0,1fr)_minmax(0,clamp(380px,40%,640px))] lg:gap-x-10 lg:px-4 ${live ? `hover:bg-card/70 ${focus}` : ''}`}
       >
-        <span className={`${serif} pt-1.5 text-[15px] tabular-nums text-muted md:col-start-1 md:row-start-1`}>{pad(i + 1)}</span>
+        <span className={`${serif} pt-1.5 text-[15px] tabular-nums text-muted lg:col-start-1 lg:row-start-1`}>{pad(i + 1)}</span>
 
-        <span className="flex flex-col gap-4 md:col-start-2 md:row-start-1">
+        <span className="flex flex-col gap-4 lg:col-start-2 lg:row-start-1">
           <span className="flex items-start justify-between gap-4">
             <span className={`${serif} text-[clamp(1.6rem,2.8vw,2.2rem)] font-medium leading-tight tracking-[-0.015em] ${live ? 'group-hover:text-accent' : ''}`}>
               {p.title}
@@ -115,7 +115,7 @@ function ProjectRow({ p, i }) {
         </span>
 
         {p.preview && (
-          <span className="col-start-2 md:col-start-3 md:row-start-1">
+          <span className="col-start-2 block w-full max-w-[640px] lg:col-start-3 lg:row-start-1 lg:max-w-none">
             <Preview p={p} />
           </span>
         )}
@@ -196,13 +196,13 @@ export default function App() {
               Open to opportunities
             </p>
 
-            <h1 className={`${serif} mt-8 text-[clamp(2.9rem,8.4vw,7rem)] font-medium leading-[0.98] tracking-[-0.035em]`}>
+            <h1 className={`${serif} mt-8 text-[clamp(2.9rem,8.4vw,9rem)] font-medium leading-[0.98] tracking-[-0.035em]`}>
               {profile.name}
             </h1>
             <p className={`${eyebrow} mt-6`}>{profile.role}</p>
 
             <div className="mt-10 grid items-end gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
-              {hasIntro && <p className="max-w-[30ch] text-balance text-[clamp(1.35rem,2.5vw,1.9rem)] leading-snug text-ink/85">{profile.intro}</p>}
+              {hasIntro && <p className="max-w-[32ch] text-balance text-[clamp(1.35rem,2.4vw,2.3rem)] leading-snug text-ink/85">{profile.intro}</p>}
               <div className="flex flex-wrap gap-3 lg:justify-end">
                 <a href="#work" className={`${btnPrimary} gap-2`}>
                   View projects
