@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { profile, experience, education, projects, skills } from './data.js';
 import { skillIcons, fallbackIcon } from './skillIcons.jsx';
-import { LuMail, LuPhone, LuMapPin, LuDownload, LuBriefcase, LuGraduationCap, LuLayers, LuArrowDown } from 'react-icons/lu';
+import { LuMail, LuPhone, LuMapPin, LuDownload, LuBriefcase, LuGraduationCap, LuLayers, LuArrowDown, LuSun, LuMoon } from 'react-icons/lu';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 // Styling is Tailwind; colours and fonts are tokens defined in index.css.
@@ -10,8 +11,31 @@ const serif = 'font-serif';
 const eyebrow = 'text-[12.5px] font-semibold uppercase tracking-[0.12em] text-accent';
 const pad = (n) => String(n).padStart(2, '0');
 
-const btnPrimary = `inline-flex items-center rounded-full bg-accent px-6 py-3 text-[15px] font-medium text-paper transition-colors hover:bg-[#14473a] ${focus}`;
+const btnPrimary = `inline-flex items-center rounded-full bg-accent px-6 py-3 text-[15px] font-medium text-paper transition-colors hover:bg-accent/85 ${focus}`;
 const btnGhost = `inline-flex items-center rounded-full border border-ink/25 px-6 py-3 text-[15px] font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper ${focus}`;
+
+function ThemeToggle() {
+  const [theme, setTheme] = useState(() => document.documentElement.getAttribute('data-theme') || 'light');
+  const dark = theme === 'dark';
+  const toggle = () => {
+    const next = dark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#0e1311' : '#f5f2ea');
+    try { localStorage.setItem('theme', next); } catch { /* storage unavailable */ }
+    setTheme(next);
+  };
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      title={dark ? 'Light mode' : 'Dark mode'}
+      className={`flex h-9 w-9 items-center justify-center rounded-full border border-rule text-ink transition-colors hover:border-ink ${focus}`}
+    >
+      {dark ? <LuSun aria-hidden="true" size={17} /> : <LuMoon aria-hidden="true" size={17} />}
+    </button>
+  );
+}
 
 function SectionHead({ kicker, title, aside }) {
   return (
@@ -139,11 +163,14 @@ export default function App() {
       <header className="border-b border-rule">
         <div className={`${wrap} flex items-center justify-between gap-6 py-5`}>
           <a href="#top" className={`${serif} text-[20px] font-semibold tracking-[-0.01em] ${focus}`}>{profile.name}</a>
-          <nav aria-label="Primary" className="flex gap-5 text-[15px] text-muted sm:gap-8">
-            {[['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills'], ['Contact', '#contact']].map(([t, h]) => (
-              <a key={h} href={h} className={`transition-colors hover:text-ink ${focus} ${t === 'Experience' ? 'hidden sm:inline' : ''}`}>{t}</a>
-            ))}
-          </nav>
+          <div className="flex items-center gap-5 sm:gap-8">
+                      <nav aria-label="Primary" className="flex gap-5 text-[15px] text-muted sm:gap-8">
+              {[['Work', '#work'], ['Experience', '#experience'], ['Skills', '#skills'], ['Contact', '#contact']].map(([t, h]) => (
+                <a key={h} href={h} className={`transition-colors hover:text-ink ${focus} ${t === 'Experience' ? 'hidden sm:inline' : ''}`}>{t}</a>
+              ))}
+            </nav>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 

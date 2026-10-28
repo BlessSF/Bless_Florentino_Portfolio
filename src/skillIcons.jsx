@@ -14,8 +14,8 @@ import {
 // Key = the exact skill name used in data.js. Add a line here when you add a skill.
 // Brand colours, tuned to stay readable on the light paper background
 // (React, Tailwind, JavaScript are slightly deepened; GitHub, Vercel, Next.js use ink).
-const INK = '#17191c';
-const GREEN = '#1c5a46';
+const INK = 'currentColor';            // follows the text colour in both themes
+const GREEN = 'var(--color-accent)';   // follows the theme accent
 
 export const skillIcons = {
   PHP: { Icon: SiPhp, color: '#777bb4' },

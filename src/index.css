@@ -17,12 +17,29 @@
   --color-night-muted: #a3b5ab;
 }
 
+/* Dark theme: same tokens, new values. Applied via <html data-theme="dark">. */
+:root { color-scheme: light; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #0e1311;
+  --color-card: #151c19;
+  --color-ink: #ece8df;
+  --color-muted: #9aa49f;
+  --color-rule: #28332e;
+  --color-accent: #5db592;
+  --color-accent-soft: #1b2b25;
+  --color-night: #070a09;
+  --color-night-text: #e8efe9;
+  --color-night-muted: #9fb0a6;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4.5rem;
 }
 
 body {
+  transition: background-color 0.25s ease, color 0.25s ease;
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
@@ -32,7 +49,7 @@ body {
 
 ::selection {
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-paper);
 }
 
 @media (prefers-reduced-motion: reduce) {
