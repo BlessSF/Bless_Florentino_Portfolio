@@ -75,6 +75,13 @@ export const projects = [
     preview: { src: '/previews/cheque-maker.webp', alt: 'Cheque Maker editor showing a cheque with payee, amount, date and amount in words placed on an A4 landscape layout' },
   },
   {
+    title: 'Cheque Printing System',
+    text: 'Print-ready cheque editor: choose the bank layout, type the payee, amount, date and cheque number, and the amount in words is filled in automatically, then printed straight onto the cheque.',
+    stack: ['Cheque printing', 'Amount in words'],
+    access: 'Tool',
+    preview: { src: '/previews/cheque-printing.webp', alt: 'Cheque printing editor with payee, amount, date and amount in words ready to print on an A4 landscape cheque' },
+  },
+  {
     title: 'Payroll & Employee Management',
     text: 'Streamlines HR processes: automates payroll calculations, manages employee data and generates reports to improve departmental workflow.',
     stack: ['PHP', 'JavaScript', 'MySQL'],
