@@ -54,7 +54,7 @@ function Preview({ p }) {
   let host = '';
   try { host = new URL(p.url).hostname; } catch { /* internal projects have no url */ }
   return (
-    <span className="block overflow-hidden rounded-xl border border-rule bg-card shadow-[0_1px_2px_rgba(23,25,28,0.04),0_12px_28px_-16px_rgba(23,25,28,0.25)] ">
+    <span className="group/prev relative z-0 block origin-center cursor-zoom-in overflow-hidden rounded-xl border border-rule bg-card shadow-[0_1px_2px_rgba(23,25,28,0.04),0_12px_28px_-16px_rgba(23,25,28,0.25)] transition-all duration-300 ease-out hover:z-20 hover:scale-[1.08] hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] motion-reduce:transition-none motion-reduce:hover:scale-100 lg:origin-right">
       <span className="flex h-8 items-center gap-3 border-b border-rule bg-card px-3.5">
         <span aria-hidden="true" className="flex gap-1.5">
           <span className="h-2 w-2 rounded-full bg-rule" /><span className="h-2 w-2 rounded-full bg-rule" /><span className="h-2 w-2 rounded-full bg-rule" />
@@ -67,7 +67,7 @@ function Preview({ p }) {
           alt={alt}
           loading="lazy"
           decoding="async"
-          className={`h-full w-full ${fit === 'contain' ? 'object-contain' : 'object-cover object-center'} transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none`}
+          className={`h-full w-full ${fit === 'contain' ? 'object-contain' : 'object-cover object-center'} transition-transform duration-500 ease-out group-hover/prev:scale-[1.04] motion-reduce:transition-none`}
         />
       </span>
     </span>
@@ -76,19 +76,16 @@ function Preview({ p }) {
 
 function ProjectRow({ p, i }) {
   const live = Boolean(p.url);
-  const Tag = live ? 'a' : 'div';
-  const linkProps = live ? { href: p.url, target: '_blank', rel: 'noopener noreferrer' } : {};
   return (
     <li>
-      <Tag
-        {...linkProps}
-        className={`group grid grid-cols-[32px_1fr] gap-x-4 gap-y-6 border-b border-rule py-10 transition-colors motion-reduce:transition-none lg:-mx-4 lg:grid-cols-[56px_minmax(0,1fr)_minmax(0,clamp(380px,40%,640px))] lg:gap-x-10 lg:px-4 ${live ? `hover:bg-card/70 ${focus}` : ''}`}
+      <div
+        className={`group grid grid-cols-[32px_1fr] gap-x-4 gap-y-6 border-b border-rule py-10 transition-colors motion-reduce:transition-none lg:-mx-4 lg:grid-cols-[56px_minmax(0,1fr)_minmax(0,clamp(380px,40%,640px))] lg:gap-x-10 lg:px-4`}
       >
         <span className={`${serif} pt-1.5 text-[15px] tabular-nums text-muted lg:col-start-1 lg:row-start-1`}>{pad(i + 1)}</span>
 
         <span className="flex flex-col gap-4 lg:col-start-2 lg:row-start-1">
           <span className="flex items-start justify-between gap-4">
-            <span className={`${serif} text-[clamp(1.6rem,2.8vw,2.2rem)] font-medium leading-tight tracking-[-0.015em] ${live ? 'group-hover:text-accent' : ''}`}>
+            <span className={`${serif} text-[clamp(1.6rem,2.8vw,2.2rem)] font-medium leading-tight tracking-[-0.015em] `}>
               {p.title}
             </span>
           </span>
@@ -108,10 +105,11 @@ function ProjectRow({ p, i }) {
             <span aria-hidden="true" className={`h-2 w-2 rounded-full ${live ? 'bg-accent' : 'bg-rule ring-1 ring-inset ring-muted/40'}`} />
             <span className={live ? 'text-accent' : 'text-muted'}>{p.access}</span>
             {live && (
-              <span aria-hidden="true" className="text-lg leading-none text-muted transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent motion-reduce:transition-none">↗</span>
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className={`ml-1 inline-flex items-center gap-1 rounded-full border border-rule px-3 py-1 text-[13px] text-muted transition-colors hover:border-accent hover:text-accent ${focus}`}>
+                Visit site <span aria-hidden="true">↗</span><span className="sr-only"> ({p.title}, opens in a new tab)</span>
+              </a>
             )}
           </span>
-          {live && <span className="sr-only">Opens {p.title} in a new tab</span>}
         </span>
 
         {p.preview && (
@@ -119,7 +117,7 @@ function ProjectRow({ p, i }) {
             <Preview p={p} />
           </span>
         )}
-      </Tag>
+      </div>
     </li>
   );
 }
