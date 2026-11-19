@@ -51,15 +51,13 @@ function SectionHead({ kicker, title, aside }) {
 
 function Preview({ p }) {
   const { src, alt, bg, fit } = p.preview;
-  let host = '';
-  try { host = new URL(p.url).hostname; } catch { /* internal projects have no url */ }
   return (
     <span className="group/prev relative z-0 block origin-center cursor-zoom-in overflow-hidden rounded-xl border border-rule bg-card shadow-[0_1px_2px_rgba(23,25,28,0.04),0_12px_28px_-16px_rgba(23,25,28,0.25)] transition-all duration-300 ease-out hover:z-20 hover:scale-[1.08] hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] motion-reduce:transition-none motion-reduce:hover:scale-100 lg:origin-right">
       <span className="flex h-8 items-center gap-3 border-b border-rule bg-card px-3.5">
         <span aria-hidden="true" className="flex gap-1.5">
           <span className="h-2 w-2 rounded-full bg-rule" /><span className="h-2 w-2 rounded-full bg-rule" /><span className="h-2 w-2 rounded-full bg-rule" />
         </span>
-        <span className="min-w-0 flex-1 truncate rounded-md bg-paper px-2.5 py-0.5 text-center text-[11.5px] text-muted">{host}</span>
+        <span className="h-4 min-w-0 flex-1 rounded-md bg-paper" />
       </span>
       <span className="block aspect-[2/1] overflow-hidden" style={{ background: bg || undefined }}>
         <img
@@ -104,11 +102,6 @@ function ProjectRow({ p, i }) {
           <span className="flex items-center gap-2 text-[14px] font-medium">
             <span aria-hidden="true" className={`h-2 w-2 rounded-full ${live ? 'bg-accent' : 'bg-rule ring-1 ring-inset ring-muted/40'}`} />
             <span className={live ? 'text-accent' : 'text-muted'}>{p.access}</span>
-            {live && (
-              <a href={p.url} target="_blank" rel="noopener noreferrer" className={`ml-1 inline-flex items-center gap-1 rounded-full border border-rule px-3 py-1 text-[13px] text-muted transition-colors hover:border-accent hover:text-accent ${focus}`}>
-                Visit site <span aria-hidden="true">↗</span><span className="sr-only"> ({p.title}, opens in a new tab)</span>
-              </a>
-            )}
           </span>
         </span>
 
