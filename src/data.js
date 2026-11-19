@@ -36,9 +36,9 @@ export const education = {
 
 export const projects = [
   {
-    title: 'Receivables',
+    title: 'Receivables / Payables',
     url: 'https://receivables-supabase.vercel.app/',
-    text: 'Accounts receivable system for tracking what each company owes: ledgers, statements of account, aging reports and branch-level access.',
+    text: 'Receivables and payables system with an inline-editable ledger, automatic balance and aging computation, statements of account, branch-level access and CSV/XLSX export.',
     stack: ['React', 'Node.js', 'Supabase', 'Vercel'],
     access: 'Live · login required',
     preview: { src: '/previews/receivables.webp', alt: 'Receivables sign-in screen with a dark analytics illustration' },
@@ -66,6 +66,13 @@ export const projects = [
     stack: ['PHP', 'MySQL'],
     access: 'Live · login required',
     preview: { src: '/previews/service-charge.webp', alt: 'Service Charge Management System sign-in screen' },
+  },
+  {
+    title: 'Cheque Maker',
+    text: 'Prints directly onto pre-printed bank cheques: pick the bank, enter payee, amount and date, and it fills in the amount in words and positions every field to the millimetre. Supports multiple cheques, bulk import and a locked layout.',
+    stack: ['Cheque printing', 'Amount in words', 'Bulk import'],
+    access: 'Tool',
+    preview: { src: '/previews/cheque-maker.webp', alt: 'Cheque Maker editor showing a cheque with payee, amount, date and amount in words placed on an A4 landscape layout' },
   },
   {
     title: 'Payroll & Employee Management',
